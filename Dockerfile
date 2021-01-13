@@ -115,22 +115,17 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# yar \
 	zip \
 	# zookeeper \
-#	@composer
-	 @composer-1
+	@composer
 
 ENV	COMPOSER_ALLOW_SUPERUSER=1 \
     PHP_USER_ID=501 \
     PHP_ENVIRONMENT=prod \
     PHP_ENABLE_XDEBUG=0 \
     PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
-    TERM=linux \
-    VERSION_PRESTISSIMO_PLUGIN=^0.3.10
+    TERM=linux
 
 # Install composer plugins
-RUN composer global require --optimize-autoloader "hirak/prestissimo:${VERSION_PRESTISSIMO_PLUGIN}" && \
- composer global dumpautoload --optimize && \
- composer clear-cache && \
- mv /usr/local/bin/composer /usr/local/bin/composer.phar
+RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar
 
 # Add configuration files
 COPY image-files/ /
