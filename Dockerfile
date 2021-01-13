@@ -1,4 +1,4 @@
-FROM php:5.6.40-fpm
+FROM php:7.0.33-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
 ENV DEBIAN_FRONTEND=noninteractive
