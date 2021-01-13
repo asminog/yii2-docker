@@ -5,7 +5,7 @@ Docker images for mac development suitable for yii2
     your-name-php:
         image: asminog/yii2-php:7.4-fpm
         environment:
-            - GITHUB_API_TOKEN=your-github-tocken-for-composer
+            - GITHUB_API_TOKEN=your-github-token-for-composer
             - PHP_USER_ID=501
             - PHP_ENVIRONMENT=dev # dev or prod php enviroment
             - PHP_ENABLE_XDEBUG=0 # enable xdebug
