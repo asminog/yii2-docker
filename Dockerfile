@@ -115,8 +115,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# yar \
 	zip \
 	# zookeeper \
-	@composer
-	# @composer-1
+#	@composer
+	 @composer-1
 
 ENV	COMPOSER_ALLOW_SUPERUSER=1 \
     PHP_USER_ID=33 \
