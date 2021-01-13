@@ -119,12 +119,14 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	 @composer-1
 
 ENV	COMPOSER_ALLOW_SUPERUSER=1 \
-    PHP_USER_ID=33 \
+    PHP_USER_ID=501 \
+    PHP_ENVIRONMENT=prod \
     PHP_ENABLE_XDEBUG=0 \
     PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
     TERM=linux \
     VERSION_PRESTISSIMO_PLUGIN=^0.3.10
 
+# Install composer plugins
 RUN composer global require --optimize-autoloader "hirak/prestissimo:${VERSION_PRESTISSIMO_PLUGIN}" && \
  composer global dumpautoload --optimize && \
  composer clear-cache && \
@@ -133,8 +135,6 @@ RUN composer global require --optimize-autoloader "hirak/prestissimo:${VERSION_P
 # Add configuration files
 COPY image-files/ /
 RUN chmod 700  /usr/local/bin/*
-
-# Install composer plugins
 
 # Install Yii framework bash autocompletion
 RUN curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
