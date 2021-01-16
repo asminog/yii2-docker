@@ -21,13 +21,16 @@ fi
 
 # Enable xdebug by ENV variable
 if [ 0 -eq "${PHP_ENABLE_XDEBUG:-0}" ] ; then
-    rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    if test -f "/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"; then
+      mv /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini.disabled
+    fi
     echo "Xdebug disabled"
 else
+    if test -f "/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini.disabled"; then
+      mv /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini.disabled /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    fi
     echo "Xdebug enabled"
 fi
-
-export PS1="\e[0;35mphd \e[0;37m\u container \h \e[0;32m\w \e[0;0m\n$ "
 
 exec "$@"
 
