@@ -32,5 +32,8 @@ else
     echo "Xdebug enabled"
 fi
 
+#execute bash by default
+export ENV=~/.shrc
+
 exec "$@"
 
