@@ -118,8 +118,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 #	@composer
 	 @composer-1
 
-ENV	ENV=~/.shrc \
-    COMPOSER_ALLOW_SUPERUSER=1 \
+ENV	COMPOSER_ALLOW_SUPERUSER=1 \
     PHP_USER_ID=501 \
     PHP_ENVIRONMENT=prod \
     PHP_ENABLE_XDEBUG=0 \
