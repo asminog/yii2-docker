@@ -17,7 +17,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# curl \ 		# installed by default
 	# dba \
 	# decimal \
-	# dom \ 		# installed by tefault
+	# dom \ 		# installed by default
 	# enchant \
 	# ev \
 	exif \
@@ -30,6 +30,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# gmp \
 	# gnupg \
 	# grpc \
+	# hash \        # installed by default
 	# http \
 	# iconv \		# installed by default
 	# igbinary \
@@ -110,12 +111,12 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# xhprof \
 	# xlswriter \
 	# xmlrpc \
-	# xsl \
+	xsl \
 	# yaml \
 	# yar \
 	zip \
 	# zookeeper \
-	@composer
+	@composer-1
 
 ENV	COMPOSER_ALLOW_SUPERUSER=1 \
     PHP_USER_ID=501 \
@@ -130,9 +131,5 @@ RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar
 # Add configuration files
 COPY image-files/ /
 RUN chmod 700  /usr/local/bin/*
-
-# Install Yii framework bash autocompletion
-RUN curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
-        -o /etc/bash_completion.d/yii
 
 WORKDIR /app
