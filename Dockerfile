@@ -90,7 +90,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# snmp \
 	# snuffleupagus \
 	soap \
-	# sockets \
+	sockets \
 	# sodium \ 		# installed by default
 	# solr \
 	# sqlsrv \
