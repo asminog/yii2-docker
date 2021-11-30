@@ -6,7 +6,8 @@ Docker Hub https://hub.docker.com/repository/docker/asminog/yii2-php
 ### Available versions for `asminog/yii2-docker`
 
 ```
-latest-fpm, 8-fpm, 8.0-fpm, 8.0.11-fpm
+latest-fpm, 8-fpm, 8.1-fpm, 8.1.0-fpm 
+8.0-fpm, 8.0.11-fpm, 8.0.12-fpm, 8.0.13-fpm
 7-fpm, 7.4-fpm, 7.4.24-fpm
 7.3-fpm, 7.3.31-fpm
 ```
