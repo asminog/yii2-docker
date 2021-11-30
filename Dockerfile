@@ -1,4 +1,4 @@
-FROM php:7.3.32-fpm
+FROM php:7.3.33-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -134,7 +134,7 @@ RUN composer global require --optimize-autoloader "hirak/prestissimo:${VERSION_P
 
 # Add configuration files
 COPY image-files/ /
-RUN chmod 700  /usr/local/bin/*
+RUN chmod 711  /usr/local/bin/*
 
 # Install Yii framework bash autocompletion
 RUN curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
