@@ -1,4 +1,4 @@
-FROM php:8.0.11-fpm
+FROM php:8.1.0-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -67,7 +67,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	pdo_mysql \
 	# pdo_oci \
 	# pdo_odbc \
-	# pdo_pgsql \
+	pdo_pgsql \
 	# pdo_sqlite \	# installed by default
 	# pdo_sqlsrv
 	# pgsql \
@@ -129,7 +129,7 @@ RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar
 
 # Add configuration files
 COPY image-files/ /
-RUN chmod 700  /usr/local/bin/*
+RUN chmod 711  /usr/local/bin/*
 
 # Install Yii framework bash autocompletion
 RUN curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
