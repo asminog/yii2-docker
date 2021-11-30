@@ -3,8 +3,6 @@ set -e
 
 echo "PHP version: ${PHP_VERSION}"
 
-chmod +x /usr/local/bin/php
-
 # Set permissions based on ENV variable (debian only)
 if [ -x "$(command -v usermod)" ] ; then
     usermod -u ${PHP_USER_ID} www-data
