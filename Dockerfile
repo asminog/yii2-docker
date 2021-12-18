@@ -1,4 +1,4 @@
-FROM php:8.1.0-fpm
+FROM php:8.1.1-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -70,7 +70,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	pdo_pgsql \
 	# pdo_sqlite \	# installed by default
 	# pdo_sqlsrv
-	# pgsql \
+	pgsql \
 	# phar \		# installed by default
 	# propro \
 	# protobuf \
