@@ -133,7 +133,5 @@ RUN chmod 711  /usr/local/bin/*
 # Install Yii framework bash autocompletion
 RUN curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
         -o /etc/bash_completion.d/yii
-RUN curl -L https://raw.githubusercontent.com/bramus/composer-autocomplete/master/composer-autocomplete \
-        -o /etc/bash_completion.d/composer
 
 WORKDIR /app
