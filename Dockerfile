@@ -1,4 +1,4 @@
-FROM php:8.1.1-fpm
+FROM php:8.1.2-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -17,7 +17,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# curl \ 		# installed by default
 	# dba \
 	# decimal \
-	# dom \ 		# installed by tefault
+	# dom \ 		# installed by default
 	# enchant \
 	# ev \
 	exif \
@@ -124,7 +124,7 @@ ENV	COMPOSER_ALLOW_SUPERUSER=1 \
     PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
     TERM=linux
 
-# Install composer plugins
+# Install composer
 RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar
 
 # Add configuration files
