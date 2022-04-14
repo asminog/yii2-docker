@@ -3,14 +3,15 @@ Docker images for mac development suitable for yii2
 ### Available versions for `asminog/yii2-docker`
 
 ```
-latest-fpm, 8-fpm, 8.0-fpm, 8.0.11-fpm
-7-fpm, 7.4-fpm, 7.4.24-fpm
-7.3-fpm, 7.3.31-fpm
+latest-fpm, 8-fpm, 8.1-fpm, 8.1.4-fpm
+8.0-fpm, 8.0.17-fpm
+7-fpm, 7.4-fpm, 7.4.28-fpm
 ```
 
 #### Deprecated or EOL versions
 
 ```
+7.3-fpm, 7.3.31-fpm
 7.2-fpm, 7.2.34-fpm
 7.1-fpm, 7.1.33-fpm
 7.0-fpm, 7.0.33-fpm

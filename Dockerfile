@@ -1,4 +1,4 @@
-FROM php:8.0.16-fpm
+FROM php:8.0.17-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -127,12 +127,17 @@ ENV	COMPOSER_ALLOW_SUPERUSER=1 \
 # Install composer plugins
 RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar
 
-# Add configuration files
-COPY image-files/ /
-RUN chmod 711  /usr/local/bin/*
+# Install Symfony CLI
+RUN echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | tee /etc/apt/sources.list.d/symfony-cli.list
+RUN apt update
+RUN apt install symfony-cli -y
 
 # Install Yii framework bash autocompletion
 RUN curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
         -o /etc/bash_completion.d/yii
+
+# Add configuration files
+COPY image-files/ /
+RUN chmod 711  /usr/local/bin/*
 
 WORKDIR /app
