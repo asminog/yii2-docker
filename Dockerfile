@@ -1,7 +1,13 @@
-FROM php:7.4.28-fpm
+FROM php:7.4.30-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive \
+    COMPOSER_ALLOW_SUPERUSER=1 \
+    PHP_USER_ID=501 \
+    PHP_ENVIRONMENT=prod \
+    PHP_ENABLE_XDEBUG=0 \
+    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
+    TERM=linux
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
@@ -117,21 +123,13 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# zookeeper \
 	@composer
 
-ENV	COMPOSER_ALLOW_SUPERUSER=1 \
-    PHP_USER_ID=501 \
-    PHP_ENVIRONMENT=prod \
-    PHP_ENABLE_XDEBUG=0 \
-    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
-    TERM=linux
-
 RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar
 
 # Add configuration files
 COPY image-files/ /
-RUN chmod 711  /usr/local/bin/*
 
-# Install Yii framework bash autocompletion
-RUN curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
+RUN chmod 711  /usr/local/bin/* && \
+    curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
         -o /etc/bash_completion.d/yii
 
 WORKDIR /app
