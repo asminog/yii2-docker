@@ -1,7 +1,14 @@
 FROM php:7.2.34-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive \
+    COMPOSER_ALLOW_SUPERUSER=1 \
+    PHP_USER_ID=501 \
+    PHP_ENVIRONMENT=prod \
+    PHP_ENABLE_XDEBUG=0 \
+    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
+    TERM=linux \
+    VERSION_PRESTISSIMO_PLUGIN=^0.3.10
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
@@ -67,7 +74,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	pdo_mysql \
 	# pdo_oci \
 	# pdo_odbc \
-	# pdo_pgsql \
+	pdo_pgsql \
 	# pdo_sqlite \	# installed by default
 	# pdo_sqlsrv
 	# pgsql \
@@ -117,14 +124,6 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# zookeeper \
 #	@composer
 	 @composer-1
-
-ENV	COMPOSER_ALLOW_SUPERUSER=1 \
-    PHP_USER_ID=501 \
-    PHP_ENVIRONMENT=prod \
-    PHP_ENABLE_XDEBUG=0 \
-    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
-    TERM=linux \
-    VERSION_PRESTISSIMO_PLUGIN=^0.3.10
 
 # Install composer plugins
 RUN composer global require --optimize-autoloader "hirak/prestissimo:${VERSION_PRESTISSIMO_PLUGIN}" && \
