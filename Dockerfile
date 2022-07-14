@@ -1,7 +1,14 @@
 FROM php:7.1.33-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive \
+    COMPOSER_ALLOW_SUPERUSER=1 \
+    PHP_USER_ID=501 \
+    PHP_ENVIRONMENT=prod \
+    PHP_ENABLE_XDEBUG=0 \
+    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
+    TERM=linux \
+    VERSION_PRESTISSIMO_PLUGIN=^0.3.10
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
@@ -118,26 +125,16 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 #	@composer
 	 @composer-1
 
-ENV	COMPOSER_ALLOW_SUPERUSER=1 \
-    PHP_USER_ID=501 \
-    PHP_ENVIRONMENT=prod \
-    PHP_ENABLE_XDEBUG=0 \
-    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
-    TERM=linux \
-    VERSION_PRESTISSIMO_PLUGIN=^0.3.10
-
-# Install composer plugins
-RUN composer global require --optimize-autoloader "hirak/prestissimo:${VERSION_PRESTISSIMO_PLUGIN}" && \
- composer global dumpautoload --optimize && \
- composer clear-cache && \
- mv /usr/local/bin/composer /usr/local/bin/composer.phar
+RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar
 
 # Add configuration files
 COPY image-files/ /
-RUN chmod 700  /usr/local/bin/*
 
-# Install Yii framework bash autocompletion
-RUN curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
-        -o /etc/bash_completion.d/yii
+# Install composer plugins
+RUN composer global require --optimize-autoloader "hirak/prestissimo:${VERSION_PRESTISSIMO_PLUGIN}" && \
+    composer global dumpautoload --optimize && \
+    composer clear-cache && \
+    curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii -o /etc/bash_completion.d/yii && \
+    chmod 700  /usr/local/bin/*
 
 WORKDIR /app
