@@ -121,16 +121,16 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# yar \
 	zip \
 	# zookeeper \
-	@composer
-
+	@composer \
+    && rm -rf /var/lib/apt/lists/* && \
 # Install composer
-RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar && \
+    mv /usr/local/bin/composer /usr/local/bin/composer.phar && \
 # Install Symfony CLI
     echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | tee /etc/apt/sources.list.d/symfony-cli.list && \
     apt update && \
     apt install symfony-cli -y && \
 # Install Yii framework bash autocompletion
-RUN curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
+    curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
         -o /etc/bash_completion.d/yii
 
 # Add configuration files
