@@ -121,8 +121,9 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# yar \
 	zip \
 	# zookeeper \
-	@composer \
-    && rm -rf /var/lib/apt/lists/* && \
+	@composer
+
+RUN rm -rf /var/lib/apt/lists/* && \
 # Install composer
     mv /usr/local/bin/composer /usr/local/bin/composer.phar && \
 # Install Symfony CLI
