@@ -121,7 +121,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# yar \
 	zip \
 	# zookeeper \
-	@composer2
+	@composer
 
 RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar
 
