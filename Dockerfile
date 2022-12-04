@@ -1,4 +1,4 @@
-FROM php:7.4.30-fpm
+FROM php:7.4.33-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -35,7 +35,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# gmagick \
 	# gmp \
 	# gnupg \
-	# grpc \
+	grpc \
 	# http \
 	# iconv \		# installed by default
 	# igbinary \
@@ -49,7 +49,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# mailparse \
 	# maxminddb \
 	# mbstring \	# installed by default
-	# mcrypt
+	mcrypt \
 	# memcache \
 	# memcached \
 	# mongo \
@@ -121,7 +121,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# yar \
 	zip \
 	# zookeeper \
-	@composer
+	@composer2
 
 RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar
 
