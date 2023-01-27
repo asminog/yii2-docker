@@ -1,4 +1,4 @@
-FROM php:8.0.21-fpm
+FROM php:8.0.27-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
 ENV DEBIAN_FRONTEND=noninteractive \
