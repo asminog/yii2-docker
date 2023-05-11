@@ -34,7 +34,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# gettext \
 	# gmagick \
 	# gmp \
-	# gnupg \
+	gnupg \
 	grpc \
 	# http \
 	# iconv \		# installed by default
