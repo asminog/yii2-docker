@@ -1,4 +1,4 @@
-FROM php:8.1.16-fpm
+FROM php:8.1.18-fpm
 MAINTAINER asminog <asminog@asminog.com>
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -34,7 +34,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# gettext \
 	# gmagick \
 	# gmp \
-	# gnupg \
+	gnupg \
 	# grpc \
 	# http \
 	# iconv \		# installed by default
