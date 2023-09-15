@@ -1,4 +1,4 @@
-FROM php:8.2.4-fpm
+FROM php:8.2.10-fpm-alpine
 MAINTAINER asminog <asminog@asminog.com>
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -53,7 +53,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# memcache \
 	# memcached \
 	# mongo \
-	# mongodb \
+	 mongodb \
 	# mosquitto \
 	# msgpack \
 	# mssql \
@@ -123,16 +123,25 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# zookeeper \
 	@composer
 
-RUN rm -rf /var/lib/apt/lists/* && \
 # Install composer
-    mv /usr/local/bin/composer /usr/local/bin/composer.phar && \
-# Install Symfony CLI
-    echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | tee /etc/apt/sources.list.d/symfony-cli.list && \
-    apt update && \
-    apt install symfony-cli -y && \
-# Install Yii framework bash autocompletion
+RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar && \
+# Install Symfony CLI \
+# ALPINE
+    apk add --no-cache bash && \
+    curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash && \
+    apk add symfony-cli && \
+    apk add bash-completion && \
+    rm -rf /var/cache/apk/* && \
     curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
-        -o /etc/bash_completion.d/yii
+        -o /usr/share/bash-completion/completions/yii
+# DEBIAN
+#    echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | tee /etc/apt/sources.list.d/symfony-cli.list && \
+#    apt update && \
+#    apt install symfony-cli -y && \
+#    rm -rf /var/lib/apt/lists/* && \
+# Install Yii framework bash autocompletion
+#    curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
+#        -o /etc/bash_completion.d/yii
 
 # Add configuration files
 COPY image-files/ /
