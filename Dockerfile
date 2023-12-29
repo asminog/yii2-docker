@@ -1,4 +1,4 @@
-FROM php:8.2.10-fpm-alpine
+FROM php:8.2.14-fpm-alpine
 MAINTAINER asminog <asminog@asminog.com>
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -127,10 +127,9 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar && \
 # Install Symfony CLI \
 # ALPINE
-    apk add --no-cache bash && \
+    apk add --no-cache bash git bash-completion && \
     curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash && \
     apk add symfony-cli && \
-    apk add bash-completion && \
     rm -rf /var/cache/apk/* && \
     curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
         -o /usr/share/bash-completion/completions/yii
