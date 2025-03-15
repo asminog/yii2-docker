@@ -1,11 +1,14 @@
 # yii2-docker
 Docker images for mac development suitable for yii2
+
+Docker Hub https://hub.docker.com/repository/docker/asminog/yii2-php
+
 ### Available versions for `asminog/yii2-docker`
 
 ```
-latest-fpm, 8-fpm, 8.1-fpm, 8.1.4-fpm
-8.0-fpm, 8.0.17-fpm
-7-fpm, 7.4-fpm, 7.4.28-fpm
+latest-fpm, 8-fpm, 8.1-fpm, 8.1.8-fpm 
+8.0-fpm, 8.0.21-fpm
+7-fpm, 7.4-fpm, 7.4.30-fpm
 ```
 
 #### Deprecated or EOL versions
