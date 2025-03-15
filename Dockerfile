@@ -1,17 +1,16 @@
 FROM php:7.4.33-fpm
-MAINTAINER asminog <asminog@asminog.com>
+LABEL org.opencontainers.image.authors="asminog <asminog@asminog.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive \
     COMPOSER_ALLOW_SUPERUSER=1 \
     PHP_USER_ID=501 \
     PHP_ENVIRONMENT=prod \
-    PHP_ENABLE_XDEBUG=0 \
-    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH \
-    TERM=linux
+    PATH=/app:/app/vendor/bin:/root/.composer/vendor/bin:$PATH
 
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-
-RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extensions \
+RUN curl -sSLf \
+        -o /usr/local/bin/install-php-extensions \
+        https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
+    chmod +x /usr/local/bin/install-php-extensions && install-php-extensions \
 	# amqp \
 	apcu \
 	# apcu_bc \
@@ -23,7 +22,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# curl \ 		# installed by default
 	# dba \
 	# decimal \
-	# dom \ 		# installed by tefault
+	# dom \ 		# installed by default
 	# enchant \
 	# ev \
 	exif \
@@ -53,7 +52,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# memcache \
 	# memcached \
 	# mongo \
-	# mongodb \
+	 mongodb \
 	# mosquitto \
 	# msgpack \
 	# mssql \
@@ -76,7 +75,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	pdo_pgsql \
 	# pdo_sqlite \	# installed by default
 	# pdo_sqlsrv
-	# pgsql \
+	pgsql \
 	# phar \		# installed by default
 	# propro \
 	# protobuf \
@@ -123,13 +122,28 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extens
 	# zookeeper \
 	@composer
 
-RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar
+# Install composer
+RUN mv /usr/local/bin/composer /usr/local/bin/composer.phar && \
+# Install Symfony CLI \
+# ALPINE
+#    apk add --no-cache bash git bash-completion && \
+#    curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash && \
+#    apk add symfony-cli && \
+#    rm -rf /var/cache/apk/* && \
+#    curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
+#        -o /usr/share/bash-completion/completions/yii
+# DEBIAN
+    echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' | tee /etc/apt/sources.list.d/symfony-cli.list && \
+    apt update && \
+    apt install symfony-cli -y && \
+    rm -rf /var/lib/apt/lists/* && \
+# Install Yii framework bash autocompletion
+    curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
+        -o /etc/bash_completion.d/yii
 
 # Add configuration files
 COPY image-files/ /
 
-RUN chmod 711  /usr/local/bin/* && \
-    curl -L https://raw.githubusercontent.com/yiisoft/yii2/master/contrib/completion/bash/yii \
-        -o /etc/bash_completion.d/yii
+RUN chmod 711  /usr/local/bin/*
 
 WORKDIR /app

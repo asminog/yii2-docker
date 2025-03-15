@@ -19,18 +19,8 @@ else
     echo "Set ${PHP_ENVIRONMENT} environment"
 fi
 
-# Enable xdebug by ENV variable
-if [ 0 -eq "${PHP_ENABLE_XDEBUG:-0}" ] ; then
-    if test -f "/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"; then
-      mv /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini.disabled
-    fi
-    echo "Xdebug disabled"
-else
-    if test -f "/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini.disabled"; then
-      mv /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini.disabled /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-    fi
-    echo "Xdebug enabled"
-fi
+# Output xdebug mode
+echo "Xdebug mode: ${XDEBUG_MODE}"
 
 exec "$@"
 

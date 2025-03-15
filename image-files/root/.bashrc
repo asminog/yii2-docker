@@ -8,3 +8,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion.d/composer
   fi
 fi
+
+alias ll='ls -la'
