@@ -14,43 +14,61 @@ RUN curl -sSLf \
 	# amqp \
 	apcu \
 	# apcu_bc \
+    # ast \
 	bcmath \
+    # bitset \
+    # blackfire \
+    # brotli \
 	# bz2 \
 	# calendar \
+    # cassandra \
 	# cmark \
-	# ctype \ 		# installed by default
-	# curl \ 		# installed by default
+    # csv \
 	# dba \
+    # ddtrace \
 	# decimal \
-	# dom \ 		# installed by default
+	# ds \
+    # ecma_intl \
 	# enchant \
 	# ev \
+    # event \
+    # excimer \
 	exif \
-	# fileinfo \	# installed by default
 	# ffi \
-	# ftp \			# installed by default
+	# ftp \
 	gd \
+    # gearman \
+    # geoip \
+    # geos \
+    # geospatial \
 	# gettext \
 	# gmagick \
 	# gmp \
 	gnupg \
 	grpc \
 	# http \
-	# iconv \		# installed by default
 	# igbinary \
 	imagick \
 	# imap \
+    # inotify \
 	# interbase \
 	intl \
+    # ion \
 	# ioncube_loader \
-	# json \
+    # jsmin \
+    # json_post \
+    # jsonpath \
 	# ldap \
+    # luasandbox \
+    # lz4 \
+    # lzf \
 	# mailparse \
 	# maxminddb \
-	# mbstring \	# installed by default
-	mcrypt \
+	# mcrypt \
+    # md4c \
 	# memcache \
 	# memcached \
+    # memprof \
 	# mongo \
 	 mongodb \
 	# mosquitto \
@@ -58,68 +76,95 @@ RUN curl -sSLf \
 	# mssql \
 	# mysql \
 	mysqli \
+    # newrelic
 	# oauth \
 	# oci8 \
 	# odbc \
 	opcache \
 	# opencensus \
+    # openswoole \
+    # opentelemetry \
+    # operator \
 	# parallel \
+    # parle \
 	# pcntl \
 	# pcov \
-	# pdo \			# installed by default
 	# pdo_dblib \
 	# pdo_firebird \
 	pdo_mysql \
 	# pdo_oci \
 	# pdo_odbc \
 	pdo_pgsql \
-	# pdo_sqlite \	# installed by default
 	# pdo_sqlsrv
 	pgsql \
-	# phar \		# installed by default
+    # phalcon \
+    # php_trie \
+    # phpy \
+    # pkcs11 \
+    # pq \
 	# propro \
 	# protobuf \
 	# pspell \
+    # psr \
 	# pthreads \
-	# posix \		# installed by default
-	# raphf \
-	# readline \	# installed by default
-	# rdkafka \
+    # raphf \
+    # rdkafka \
 	# recode \
 	redis \
-	# session \		# installed by default
+    # relay \
+    # saxon \
+    # seasclick \
+    # seaslog \
 	# shmop \
-	# simplexml \	# installed by default
+	# simdjson \
 	# smbclient \
+    # snappy \
 	# snmp \
 	# snuffleupagus \
 	soap \
 	# sockets \
-	# sodium \ 		# installed by default
+	# sodium \
 	# solr \
+    # sourceguardian \
+    # spx \
 	# sqlsrv \
 	# ssh2 \
+    # stomp \
 	# swoole \
 	# sybase_ct \
+    # sync \
 	# sysvmsg \
 	# sysvsem \
 	# sysvshm \
-	# tdlib
+    # tensor \
+    # tideways \
 	# tidy \
 	# timezonedb \
-	# tokenizer \
 	# uopz \
+    # uploadprogress \
 	# uuid \
+    # uv \
+    # vips \
+    # vld \
 	# wddx \
+    # wikidiff2 \
 	xdebug \
+    # xdiff \
 	# xhprof \
 	# xlswriter \
+    # xmldiff \
 	# xmlrpc \
+    # xpass \
 	# xsl \
+    # yac \
 	# yaml \
 	# yar \
+    # zephir_parser \
 	zip \
+    # zmq \
 	# zookeeper \
+    # zstd \
+    # @fix_letsencrypt \
 	@composer
 
 # Install composer
