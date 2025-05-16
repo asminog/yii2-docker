@@ -94,7 +94,7 @@ RUN curl -sSLf \
 	# snmp \
 	# snuffleupagus \
 	soap \
-	# sockets \
+	sockets \
 	# sodium \ 		# installed by default
 	# solr \
 	# sqlsrv \
