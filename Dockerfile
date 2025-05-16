@@ -1,4 +1,4 @@
-FROM php:8.3.19-fpm
+FROM php:8.3.21-fpm
 LABEL org.opencontainers.image.authors="asminog <asminog@asminog.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -94,7 +94,7 @@ RUN curl -sSLf \
 	# snmp \
 	# snuffleupagus \
 	soap \
-	# sockets \
+	sockets \
 	# sodium \ 		# installed by default
 	# solr \
 	# sqlsrv \
