@@ -1,4 +1,4 @@
-FROM php:8.3.21-fpm
+FROM php:8.3.26-fpm
 LABEL org.opencontainers.image.authors="asminog <asminog@asminog.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive \
